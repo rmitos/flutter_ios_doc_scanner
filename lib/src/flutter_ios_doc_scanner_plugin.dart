@@ -7,8 +7,9 @@ class FlutterIOSDocScannerPlugin {
     return FlutterIOSDocScannerPlugin._();
   }
   Future<List<String>> pickDocument(String simulatorImagePath) async {
-    final List<dynamic> images =
+    final List<dynamic>? images =
         await _channel.invokeMethod('pickDocument', simulatorImagePath);
+    if(images == null) return [];
     return images.map((e) => e.toString()).toList();
   }
 }
